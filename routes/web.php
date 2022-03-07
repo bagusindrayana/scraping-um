@@ -28,24 +28,24 @@ Route::get('/{cat}', function ($cat) {
     $doc = new DOMDocument();
     $doc->loadHTML($htmlString);
     $xpath = new DOMXPath($doc);
-    $judul_beritas = $xpath->evaluate('//main[contains(@class,"content")]//article[contains(@class,"post-entry")]//header//h2//a');
-    $gambar_beritas = $xpath->evaluate('//main[contains(@class,"content")]//article[contains(@class,"post-entry")]//div[@class="blog-meta"]//a//img/@src');
-    $isi_beritas = $xpath->evaluate('//main[contains(@class,"content")]//article[contains(@class,"post-entry")]//div[@class="entry-content"]');
-    $tanggal_berita = $xpath->evaluate('//main[contains(@class,"content")]//article[contains(@class,"post-entry")]//time[contains(@class,"date-container")]');
+    $judul_artikels = $xpath->evaluate('//main[contains(@class,"content")]//article[contains(@class,"post-entry")]//header//h2//a');
+    $gambar_artikels = $xpath->evaluate('//main[contains(@class,"content")]//article[contains(@class,"post-entry")]//div[@class="blog-meta"]//a//img/@src');
+    $isi_artikels = $xpath->evaluate('//main[contains(@class,"content")]//article[contains(@class,"post-entry")]//div[@class="entry-content"]');
+    $tanggal_artikel = $xpath->evaluate('//main[contains(@class,"content")]//article[contains(@class,"post-entry")]//time[contains(@class,"date-container")]');
 
-    $beritas = [];
+    $artikels = [];
     
-    foreach ($judul_beritas as $index => $judul_berita) {
+    foreach ($judul_artikels as $index => $judul_artikel) {
         
-        $beritas[] = [
-            'judul_berita' => $judul_berita->textContent,
-            'gambar_berita'=>@$gambar_beritas[$index]->textContent,
-            'isi_berita'=>@$isi_beritas[$index]->textContent,
-            'tanggal_berita'=>@$tanggal_berita[$index]->textContent
+        $artikels[] = [
+            'judul_artikel' => $judul_artikel->textContent,
+            'gambar_artikel'=>@$gambar_artikels[$index]->textContent,
+            'isi_artikel'=>@$isi_artikels[$index]->textContent,
+            'tanggal_artikel'=>@$tanggal_artikel[$index]->textContent
             
         ];
         
     }
 
-    return json_encode($beritas);
+    return json_encode($artikels);
 });
