@@ -7,3 +7,8 @@
 
 - /{nama_kategori}/?page=
 
+### Demo
+- https://scraping-um.herokuapp.com/berita
+- https://scraping-um.herokuapp.com/berita?page=2
+- https://scraping-um.herokuapp.com/pengumuman
+
